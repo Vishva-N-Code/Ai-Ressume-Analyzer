@@ -157,24 +157,34 @@ if 'portal_user' not in st.session_state:
 # ============================================================================
 
 def render_header(title: str, subtitle: str = ""):
-    """Render luxury cyber glassmorphic page header banner"""
-    subtitle_html = f'<p style="color: #94a3b8; font-size: 0.95rem; margin-top: 0.4rem; font-weight: 500;">{subtitle}</p>' if subtitle else ''
+    """Render luxury cyber glassmorphic page header banner with top margin branding bar"""
+    subtitle_html = f'<p style="color: #94a3b8; font-size: 1.05rem; margin-top: 0.5rem; font-weight: 500; line-height: 1.5;">{subtitle}</p>' if subtitle else ''
     st.markdown(f"""
-        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(11, 15, 25, 0.95)); backdrop-filter: blur(16px); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 16px; padding: 1.75rem 2.25rem; margin-bottom: 2.25rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 12px 35px rgba(0,0,0,0.5), 0 0 25px rgba(6, 182, 212, 0.15); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50px; right: -50px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%); pointer-events: none;"></div>
-            <div style="z-index: 2;">
-                <h1 style="margin: 0; font-size: 2.25rem; font-weight: 900; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff 0%, #38bdf8 60%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(11, 15, 25, 0.98)); backdrop-filter: blur(16px); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 16px; padding: 1.5rem 2.25rem 1.75rem 2.25rem; margin-bottom: 2.5rem; box-shadow: 0 12px 35px rgba(0,0,0,0.5), 0 0 25px rgba(6, 182, 212, 0.15); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%); pointer-events: none;"></div>
+            
+            <!-- TOP MARGIN BAR: PLATFORM BADGE + DEVELOPER BRANDING -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.85rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); z-index: 2; position: relative;">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                    <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;"></span>
+                    <span style="font-size: 0.78rem; color: #94a3b8; font-weight: 800; letter-spacing: 0.1em;">AI RESUME ANALYZER PRO</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                    <span style="background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.4); color: #38bdf8; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);">
+                        🟢 AI ENGINE ONLINE
+                    </span>
+                    <span style="font-size: 0.82rem; color: #f8fafc; font-weight: 600; background: rgba(56, 189, 248, 0.08); padding: 0.35rem 0.95rem; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.25);">
+                        Developed by <strong style="color: #38bdf8; font-weight: 800; text-shadow: 0 0 10px rgba(56,189,248,0.5);">Vishva Nandakumar</strong>
+                    </span>
+                </div>
+            </div>
+
+            <!-- MAIN HERO TITLE & SUBTITLE -->
+            <div style="z-index: 2; position: relative;">
+                <h1 style="margin: 0; font-size: 2.6rem; font-weight: 900; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff 0%, #38bdf8 55%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                     📄 {title}
                 </h1>
                 {subtitle_html}
-            </div>
-            <div style="text-align: right; min-width: 220px; z-index: 2;">
-                <span style="background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.4); color: #38bdf8; padding: 0.45rem 1rem; border-radius: 30px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);">
-                    🟢 AI ENGINE ONLINE
-                </span>
-                <p style="margin: 0.6rem 0 0 0; font-size: 0.83rem; color: #cbd5e1; font-weight: 600;">
-                    Developed by <span style="color: #38bdf8; font-weight: 800; text-shadow: 0 0 10px rgba(56,189,248,0.4);">Vishva Nandakumar</span>
-                </p>
             </div>
         </div>
     """, unsafe_allow_html=True)
