@@ -4,6 +4,7 @@ World-Class AI Resume Analysis with Luxury Design System
 Production-ready Streamlit application with enterprise UX
 """
 
+import os
 import streamlit as st
 import requests
 import pandas as pd
@@ -28,9 +29,15 @@ st.set_page_config(
 # PREMIUM DARK MODE CSS - COMPLETE DESIGN SYSTEM
 # ============================================================================
 
-def load_css(file_path):
-    with open(file_path) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+def load_css(file_name):
+    """Safely load CSS file relative to app script location or CWD"""
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, file_name)
+    if not os.path.exists(file_path):
+        file_path = os.path.join(os.getcwd(), file_name)
+    if os.path.exists(file_path):
+        with open(file_path, "r", encoding="utf-8") as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Load centralized CSS
 load_css("styles/main.css")
@@ -39,7 +46,9 @@ load_css("styles/main.css")
 # API CONFIGURATION
 # ============================================================================
 
-API_URL = "http://localhost:8000"
+API_URL = os.getenv("API_URL", "http://localhost:8000")
+if hasattr(st, "secrets") and "API_URL" in st.secrets:
+    API_URL = st.secrets["API_URL"]
 
 # ============================================================================
 # CACHED API FUNCTIONS (Optimized for Performance)
