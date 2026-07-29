@@ -162,8 +162,6 @@ def render_header(title: str, subtitle: str = ""):
     st.markdown(f"""
         <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(11, 15, 25, 0.98)); backdrop-filter: blur(16px); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 16px; padding: 1.5rem 2.25rem 1.75rem 2.25rem; margin-bottom: 2.5rem; box-shadow: 0 12px 35px rgba(0,0,0,0.5), 0 0 25px rgba(6, 182, 212, 0.15); position: relative; overflow: hidden;">
             <div style="position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%); pointer-events: none;"></div>
-            
-            <!-- TOP MARGIN BAR: PLATFORM BADGE + DEVELOPER BRANDING -->
             <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.85rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); z-index: 2; position: relative;">
                 <div style="display: flex; align-items: center; gap: 0.6rem;">
                     <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;"></span>
@@ -178,8 +176,6 @@ def render_header(title: str, subtitle: str = ""):
                     </span>
                 </div>
             </div>
-
-            <!-- MAIN HERO TITLE & SUBTITLE -->
             <div style="z-index: 2; position: relative;">
                 <h1 style="margin: 0; font-size: 2.6rem; font-weight: 900; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff 0%, #38bdf8 55%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                     📄 {title}
