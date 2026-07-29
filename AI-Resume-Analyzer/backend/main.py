@@ -46,15 +46,31 @@ from security_middleware import (
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Initialize database and create necessary directories on startup"""
+    try:
+        if not os.path.exists(UPLOAD_DIR):
+            os.makedirs(UPLOAD_DIR)
+            logger.info(f"Created uploads directory: {UPLOAD_DIR}")
+        initialize_database()
+        logger.info("Database initialized successfully")
+    except Exception as e:
+        logger.error(f"Failed to initialize: {e}")
+        logger.warning("Server starting but some features may not work. Check configuration.")
+    yield
+
 # Initialize FastAPI app
 app = FastAPI(
     title="Resume Analyzer API",
     version="1.0.0",
-    description="Secure Resume Analysis API with Role-Based Access Control"
+    description="Secure Resume Analysis API with Role-Based Access Control",
+    lifespan=lifespan
 )
 
-# Add Security Middleware (order matters!)
-# Note: Middleware are wrapped in reverse order, but they execute in the order below
+# Add Security Middleware
 app.add_middleware(HTTPSEnforcementMiddleware)
 app.add_middleware(InputSanitizationMiddleware)
 app.add_middleware(RequestLoggingMiddleware)
@@ -71,43 +87,6 @@ app.add_middleware(
     allow_headers=["*"],
     expose_headers=["X-Total-Count", "X-Page-Count", "X-Process-Time"],
 )
-
-# Pydantic models
-class ResumeUploadResponse(BaseModel):
-    resume_id: int
-    message: str
-    analysis: dict
-
-class AnalyticsResponse(BaseModel):
-    total_resumes: int
-    average_score: float
-    top_roles: list
-    top_skills: list
-
-class HealthCheckResponse(BaseModel):
-    status: str
-    timestamp: str
-    version: str
-
-class ErrorResponse(BaseModel):
-    detail: str
-    error_code: str
-
-@app.on_event("startup")
-async def startup():
-    """Initialize database and create necessary directories on startup"""
-    try:
-        # Create uploads directory
-        if not os.path.exists(UPLOAD_DIR):
-            os.makedirs(UPLOAD_DIR)
-            logger.info(f"Created uploads directory: {UPLOAD_DIR}")
-        
-        # Initialize database
-        initialize_database()
-        logger.info("Database initialized successfully")
-    except Exception as e:
-        logger.error(f"Failed to initialize: {e}")
-        logger.warning("Server starting but some features may not work. Check configuration.")
 
 @app.get("/health")
 async def health_check() -> HealthCheckResponse:
