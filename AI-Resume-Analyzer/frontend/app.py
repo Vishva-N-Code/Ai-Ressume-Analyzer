@@ -157,20 +157,23 @@ if 'portal_user' not in st.session_state:
 # ============================================================================
 
 def render_header(title: str, subtitle: str = ""):
-    """Render premium page header with application banner and developer credit"""
-    subtitle_html = f'<p class="rockstar-page-subtitle" style="color: #94a3b8; opacity: 0.9; font-size: 0.95rem; margin-top: 0.35rem;">{subtitle}</p>' if subtitle else ''
+    """Render luxury cyber glassmorphic page header banner"""
+    subtitle_html = f'<p style="color: #94a3b8; font-size: 0.95rem; margin-top: 0.4rem; font-weight: 500;">{subtitle}</p>' if subtitle else ''
     st.markdown(f"""
-        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 1.5rem 2rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
-            <div>
-                <h1 class="rockstar-page-title" style="margin: 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF;">📄 {title}</h1>
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(11, 15, 25, 0.95)); backdrop-filter: blur(16px); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 16px; padding: 1.75rem 2.25rem; margin-bottom: 2.25rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 12px 35px rgba(0,0,0,0.5), 0 0 25px rgba(6, 182, 212, 0.15); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50px; right: -50px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%); pointer-events: none;"></div>
+            <div style="z-index: 2;">
+                <h1 style="margin: 0; font-size: 2.25rem; font-weight: 900; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff 0%, #38bdf8 60%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    📄 {title}
+                </h1>
                 {subtitle_html}
             </div>
-            <div style="text-align: right; min-width: 210px;">
-                <span style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;">
-                    AI ENGINE PRO v2.0
+            <div style="text-align: right; min-width: 220px; z-index: 2;">
+                <span style="background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.4); color: #38bdf8; padding: 0.45rem 1rem; border-radius: 30px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);">
+                    🟢 AI ENGINE ONLINE
                 </span>
-                <p style="margin: 0.5rem 0 0 0; font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">
-                    Developed by <span style="color: #38bdf8; font-weight: 700;">Vishva Nandakumar</span>
+                <p style="margin: 0.6rem 0 0 0; font-size: 0.83rem; color: #cbd5e1; font-weight: 600;">
+                    Developed by <span style="color: #38bdf8; font-weight: 800; text-shadow: 0 0 10px rgba(56,189,248,0.4);">Vishva Nandakumar</span>
                 </p>
             </div>
         </div>
