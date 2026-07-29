@@ -157,12 +157,22 @@ if 'portal_user' not in st.session_state:
 # ============================================================================
 
 def render_header(title: str, subtitle: str = ""):
-    """Render premium rockstar page header"""
-    subtitle_html = f'<p class="rockstar-page-subtitle" style="color: var(--text-tertiary); opacity: 0.9; font-size: 1rem; margin-top: 0.5rem;">{subtitle}</p>' if subtitle else ''
+    """Render premium page header with application banner and developer credit"""
+    subtitle_html = f'<p class="rockstar-page-subtitle" style="color: #94a3b8; opacity: 0.9; font-size: 0.95rem; margin-top: 0.35rem;">{subtitle}</p>' if subtitle else ''
     st.markdown(f"""
-        <div class="rockstar-page-header" style="margin-bottom: 3rem; padding-left: 1rem; border-left: 4px solid var(--accent-primary);">
-            <h1 class="rockstar-page-title" style="margin: 0; font-size: 2.75rem; font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF;">{title}</h1>
-            {subtitle_html}
+        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 1.5rem 2rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+            <div>
+                <h1 class="rockstar-page-title" style="margin: 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF;">📄 {title}</h1>
+                {subtitle_html}
+            </div>
+            <div style="text-align: right; min-width: 210px;">
+                <span style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;">
+                    AI ENGINE PRO v2.0
+                </span>
+                <p style="margin: 0.5rem 0 0 0; font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">
+                    Developed by <span style="color: #38bdf8; font-weight: 700;">Vishva Nandakumar</span>
+                </p>
+            </div>
         </div>
     """, unsafe_allow_html=True)
 
@@ -212,12 +222,12 @@ def get_score_badge(score: float):
 with st.sidebar:
     # Render minimalist premium brand header
     st.markdown("""
-        <div style='padding: 1rem 0; margin-bottom: 2rem;'>
+        <div style='padding: 1rem 0; margin-bottom: 1.5rem;'>
             <div style='display: flex; align-items: center; gap: 0.75rem;'>
                 <div class='sidebar-logo-animated' style='font-size: 2rem;'>📄</div>
                 <div>
-                    <h2 style='margin: 0; font-size: 1.25rem; font-weight: 800; color: #fff; letter-spacing: -0.02em;'>RESUME <span style='color: var(--accent-primary);'>ANALYSIS</span></h2>
-                    <p style='margin: 0; font-size: 0.65rem; color: var(--text-tertiary); font-weight: 700; letter-spacing: 0.1em;'>INTELLIGENT ANALYSIS</p>
+                    <h2 style='margin: 0; font-size: 1.25rem; font-weight: 800; color: #fff; letter-spacing: -0.02em;'>AI RESUME <span style='color: var(--accent-primary);'>ANALYZER</span></h2>
+                    <p style='margin: 0; font-size: 0.65rem; color: var(--text-tertiary); font-weight: 700; letter-spacing: 0.1em;'>ATS & JOB ALIGNMENT ENGINE</p>
                 </div>
             </div>
         </div>
@@ -251,8 +261,13 @@ with st.sidebar:
         st.session_state.current_page = "Help"
         st.rerun()
 
-    # Add spacing after navigation
-    st.markdown("<div style='margin-bottom: 2rem;'></div>", unsafe_allow_html=True)
+    # Developer badge in sidebar
+    st.markdown("""
+        <div style='padding: 0.85rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(56, 189, 248, 0.08); text-align: center;'>
+            <p style='margin: 0; font-size: 0.7rem; color: #94a3b8; font-weight: 600;'>DEVELOPED BY</p>
+            <p style='margin: 3px 0 0 0; font-size: 0.88rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.02em;'>Vishva Nandakumar</p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # ============================================================================
 # PAGE: UPLOAD RESUME
@@ -1237,12 +1252,15 @@ elif st.session_state.current_page == "Help":
 # ============================================================================
 
 st.markdown("""
-<div style='text-align: center; padding: 32px 0; margin-top: 48px; border-top: 1px solid var(--border);'>
-    <p style='font-size: 13px; color: var(--text-tertiary); margin-bottom: 8px;'>
-        <strong>Resume AI</strong> © 2024 | Built with ❤️ for professional growth
+<div style='text-align: center; padding: 28px 0; margin-top: 48px; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(15, 23, 42, 0.6); border-radius: 12px;'>
+    <p style='font-size: 15px; color: #f8fafc; margin-bottom: 6px; font-weight: 700;'>
+        📄 AI Resume Analyzer
     </p>
-    <p style='font-size: 12px; color: var(--text-tertiary);'>
-        Analyses are AI-powered guidance. Hiring decisions made by human recruiters.
+    <p style='font-size: 14px; color: #38bdf8; font-weight: 700; margin-bottom: 8px;'>
+        Developed by Vishva Nandakumar
+    </p>
+    <p style='font-size: 12px; color: #94a3b8;'>
+        Automated ATS Scoring, Skill Gap Analysis & Job Alignment Engine © 2026
     </p>
 </div>
 """, unsafe_allow_html=True)
