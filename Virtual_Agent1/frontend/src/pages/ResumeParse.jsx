@@ -39,27 +39,9 @@ export default function ResumeParse() {
             AI Resume Analyzer
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-            Powered by advanced NLP models to optimize your professional profile.
+            Powered by advanced NLP models for ATS scoring, job description matching, and resume optimization.
           </p>
         </div>
-        
-        <button 
-          onClick={() => navigate('/start')}
-          style={{
-            padding: '0.6rem 1.2rem',
-            background: 'rgba(44, 154, 255, 0.1)',
-            border: '1px solid rgba(44, 154, 255, 0.2)',
-            borderRadius: '0.5rem',
-            color: 'var(--accent)',
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'all 0.3s'
-          }}
-          onMouseOver={(e) => e.target.style.background = 'rgba(44, 154, 255, 0.2)'}
-          onMouseOut={(e) => e.target.style.background = 'rgba(44, 154, 255, 0.1)'}
-        >
-          ← Back to Tools
-        </button>
       </div>
 
       {/* 

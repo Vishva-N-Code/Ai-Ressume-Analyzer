@@ -1,7 +1,7 @@
 {
-  "name": "virtual-agent-parent",
+  "name": "ai-resume-analyzer-parent",
   "version": "1.0.0",
-  "description": "Parent orchestrator for Virtual Agent and Resume Analyzer services",
+  "description": "Parent orchestrator for AI Resume Analyzer service",
   "scripts": {
     "dev": "npx concurrently --kill-others \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:resume-backend\" \"npm run dev:resume-frontend\"",
     "dev:backend": "cd Virtual_Agent1/backend && npm run dev",

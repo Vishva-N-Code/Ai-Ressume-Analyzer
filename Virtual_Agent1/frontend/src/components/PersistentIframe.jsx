@@ -8,7 +8,8 @@ import { API_BASE_URL } from '../config';
  */
 export default function PersistentIframe() {
   const [location] = useLocation();
-  const isVisible = location === "/resume-parse";
+  const userId = localStorage.getItem('userId');
+  const isVisible = (location === "/resume-parse" || location === "/") && Boolean(userId);
   const [loading, setLoading] = useState(true);
   const [streamlitUrl, setStreamlitUrl] = useState("http://localhost:8501");
 

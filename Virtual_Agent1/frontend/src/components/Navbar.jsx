@@ -39,14 +39,14 @@ export default function Navbar() {
             boxShadow: '0 0 20px rgba(44, 154, 255, 0.3)',
             color: 'white'
           }}>
-            🧠
+            📄
           </div>
           <div className="flex flex-col items-start">
             <span className="text-base font-bold" style={{ color: 'var(--text-primary)', lineHeight: 1 }}>
-              Lana AI
+              AI Resume Analyzer
             </span>
             <span className="text-xs font-semibold" style={{ color: 'var(--accent)', letterSpacing: '0.5px', marginTop: '2px' }}>
-              Crack Tech Interviews
+              ATS & Job Alignment Engine
             </span>
           </div>
         </Link>
@@ -73,7 +73,7 @@ export default function Navbar() {
                     position: 'relative',
                     overflow: 'hidden'
                   }}>
-                    <span style={{ position: 'absolute', left: 2, top: 2, fontSize: '1.1rem', opacity: 0.7, filter: 'drop-shadow(0 0 1px #fff)' }}>🎸</span>
+                    <span style={{ position: 'absolute', left: 2, top: 2, fontSize: '1.1rem', opacity: 0.7, filter: 'drop-shadow(0 0 1px #fff)' }}>📄</span>
                     <span style={{ zIndex: 2, fontWeight: 900, letterSpacing: 1 }}>{userName ? userName.charAt(0).toUpperCase() : 'R'}</span>
                   </div>
                   <div className="hidden sm:flex flex-col text-left">
@@ -81,7 +81,6 @@ export default function Navbar() {
                       {userName || 'User'}
                     </span>
                   </div>
-                  {/* Arrow removed as requested */}
                 </button>
 
                 {/* Dropdown Menu */}
@@ -97,17 +96,11 @@ export default function Navbar() {
                     }} onMouseEnter={(e) => e.target.style.color = 'var(--accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>
                       <span>👤</span> My Profile
                     </Link>
-                    <Link href="/progress" className="block px-4 py-3 text-sm transition-colors flex items-center gap-2" style={{
+                    <Link href="/resume-parse" className="block px-4 py-3 text-sm transition-colors flex items-center gap-2" style={{
                       color: 'var(--text-secondary)',
                       borderBottom: '1px solid rgba(44, 154, 255, 0.1)'
                     }} onMouseEnter={(e) => e.target.style.color = 'var(--accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>
-                      <span>📊</span> Analytics
-                    </Link>
-                    <Link href="/start" className="block px-4 py-3 text-sm transition-colors flex items-center gap-2" style={{
-                      color: 'var(--text-secondary)',
-                      borderBottom: '1px solid rgba(44, 154, 255, 0.1)'
-                    }} onMouseEnter={(e) => e.target.style.color = 'var(--accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>
-                      <span>🚀</span> New Interview
+                      <span>📄</span> Resume Analyzer
                     </Link>
                     <button
                       onClick={() => {
@@ -136,14 +129,14 @@ export default function Navbar() {
                 Sign In
               </Link>
               <button
-                onClick={() => window.location.href = '/start'}
+                onClick={() => window.location.href = '/login'}
                 className="px-5 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-300"
                 style={{
                   background: 'linear-gradient(90deg, var(--accent), var(--accent-2))',
                   boxShadow: '0 0 15px rgba(44, 154, 255, 0.3)'
                 }}
               >
-                Start Free
+                Sign Up / Get Started
               </button>
             </>
           )}

@@ -21,6 +21,13 @@ export default function Login() {
   const [usernameAvailable, setUsernameAvailable] = useState(true);
   const [checkingUsername, setCheckingUsername] = useState(false);
 
+  // Redirect if already logged in
+  useEffect(() => {
+    if (localStorage.getItem('userId')) {
+      navigate('/resume-parse');
+    }
+  }, [navigate]);
+
   // Clear form on mode change
   useEffect(() => {
     setPassword('');
@@ -148,7 +155,7 @@ export default function Login() {
       window.dispatchEvent(new CustomEvent('auth-changed'));
 
       setSuccess('Login successful! Redirecting...');
-      setTimeout(() => navigate('/start'), 1500);
+      setTimeout(() => navigate('/resume-parse'), 1000);
     } catch (err) {
       const errorMsg = err.message || 'An unknown error occurred';
       setError(`Login error: ${errorMsg}. Check console for details.`);
@@ -244,7 +251,7 @@ export default function Login() {
       localStorage.setItem('createdAt', new Date().toISOString());
 
       setSuccess('Registration successful! Welcome! Redirecting...');
-      setTimeout(() => navigate('/start'), 1500);
+      setTimeout(() => navigate('/resume-parse'), 1000);
     } catch (err) {
       const errorMsg = err.message || 'An unknown error occurred';
       setError(`Registration error: ${errorMsg}. Check console for details.`);

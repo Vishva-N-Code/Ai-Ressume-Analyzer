@@ -1,42 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route, useLocation } from "wouter";
-import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
-import SelectMode from "./pages/SelectMode";
-import Interview from "./pages/Interview";
-import AgentPage from "./pages/Agent";
 import ResumeParse from "./pages/ResumeParse";
-import Chatbot from "./pages/Chatbot";
-import AnalyticsPage from "./pages/Analytics";
 import ProgressDashboard from "./pages/ProgressDashboard";
-import JudgeView from "./pages/JudgeView";
-import CodePractice from "./pages/CodePractice";
 import PersistentIframe from "./components/PersistentIframe";
 
-// Note: UserProfile and ProgressDashboard handle their own authentication checks
-// in their useEffect hooks, so we don't need a wrapper component here
+function ProtectedRoute({ component: Component }) {
+  const [, navigate] = useLocation();
+  const userId = localStorage.getItem('userId');
+
+  useEffect(() => {
+    if (!userId) {
+      navigate('/login');
+    }
+  }, [userId, navigate]);
+
+  if (!userId) {
+    return null;
+  }
+
+  return <Component />;
+}
 
 function Router() {
   return (
     <div>
       <Navbar />
       <Switch>
-        <Route path="/" component={LandingPage} />
         <Route path="/login" component={Login} />
-        {/* Protected Routes - Handle auth internally */}
-        <Route path="/profile" component={UserProfile} />
-        <Route path="/progress" component={ProgressDashboard} />
-        {/* Public Routes */}
-        <Route path="/start" component={SelectMode} />
-        <Route path="/agent" component={AgentPage} />
-        <Route path="/interview" component={Interview} />
-        <Route path="/resume-parse" component={ResumeParse} />
-        <Route path="/chatbot" component={Chatbot} />
-        <Route path="/analytics" component={AnalyticsPage} />
-        <Route path="/judge" component={JudgeView} />
-        <Route path="/code-practice" component={CodePractice} />
+        <Route path="/profile">{() => <ProtectedRoute component={UserProfile} />}</Route>
+        <Route path="/progress">{() => <ProtectedRoute component={ProgressDashboard} />}</Route>
+        <Route path="/resume-parse">{() => <ProtectedRoute component={ResumeParse} />}</Route>
+        <Route path="/">{() => <ProtectedRoute component={ResumeParse} />}</Route>
+        <Route>{() => <ProtectedRoute component={ResumeParse} />}</Route>
       </Switch>
       <PersistentIframe />
     </div>
