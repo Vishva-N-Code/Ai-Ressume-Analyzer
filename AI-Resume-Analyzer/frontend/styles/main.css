@@ -1350,3 +1350,20 @@ button[data-testid="FormSubmitButton"]:hover {
     margin: 0.5rem 0 3rem 0;
     font-weight: 500;
 }
+
+/* ==========================================
+   HIDE STREAMLIT HEADER ANCHOR LINKS (🔗 HOVER ICONS)
+   ========================================== */
+a.header-anchor,
+.stMarkdown a.header-anchor,
+[data-testid="stHeaderActionElements"],
+[data-testid="stMarkdownContainer"] a.header-anchor,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
