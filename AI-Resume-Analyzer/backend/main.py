@@ -88,6 +88,27 @@ app.add_middleware(
     expose_headers=["X-Total-Count", "X-Page-Count", "X-Process-Time"],
 )
 
+# Pydantic models
+class ResumeUploadResponse(BaseModel):
+    resume_id: int
+    message: str
+    analysis: dict
+
+class AnalyticsResponse(BaseModel):
+    total_resumes: int
+    average_score: float
+    top_roles: list
+    top_skills: list
+
+class HealthCheckResponse(BaseModel):
+    status: str
+    timestamp: str
+    version: str
+
+class ErrorResponse(BaseModel):
+    detail: str
+    error_code: str
+
 @app.get("/health")
 async def health_check() -> HealthCheckResponse:
     """Health check endpoint - public access"""
